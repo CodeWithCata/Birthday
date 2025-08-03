@@ -7,25 +7,35 @@ import poza3 from '../assets/PozeKitty/PozaInimioara.jpg'
 import poza4 from '../assets/PozeKitty/PozaToataClasa.jpg'
 import poza5 from '../assets/PozeKitty/PozaToataClasaPeHol.jpg'
 import poza6 from '../assets/PozeKitty/tortCartonase.jpg'
-import { motion, useInView } from "framer-motion";
+import { color, motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Confetti from "react-confetti";
 
 
 
 const urariDoamnaInvatatoare = [
-  "Doamnă învățătoare, în această zi cu totul specială, vă mulțumim din suflet pentru dăruirea și răbdarea cu care ne însoțiți în fiecare pas al drumului nostru spre cunoaștere și creștere.",
+  "🎉Doamna învățătoare, în această zi cu totul specială, vă multumesc din suflet pentru dăruirea și răbdarea cu care ma insotiti în fiecare pas al drumului nostru spre cunoaștere și creștere.🎉",
   
-  "Sărbătorim astăzi nu doar ziua dumneavoastră de naștere, ci și lumina pe care o răspândiți în sufletele noastre, transformând fiecare lecție într-o experiență plină de sens și inspirație.",
+  "🎉Sărbătorim astăzi nu doar ziua dumneavoastră de naștere, ci și lumina pe care o răspândiți în sufletele noastre, transformând fiecare lecție într-o experiență plină de sens și inspirație.🎉",
   
-  "Vă dorim din inimă sănătate puternică și bucurii nenumărate, ca să puteți continua să vă împliniți vocația cu aceeași pasiune și eleganță care vă definesc.",
+  "🎉Vă dorim din inimă multa sanatate și bucurii nenumărate, ca să puteți continua să vă împliniți visul cu aceeași pasiune și eleganță care vă definesc.🎉",
   
-  "Fie ca fiecare zi să vă aducă satisfacții profunde și recunoștință sinceră pentru impactul frumos pe care îl aveți asupra noastră, a elevilor care ne bucurăm să vă avem ca model și ghid.",
+  "🎉Fie ca fiecare zi să vă aducă satisfacții profunde și recunoștință sinceră pentru impactul frumos pe care îl aveți asupra noastră, asupra clasei care se bucurăm să vă avem ca model și ghid.🎉",
   
-  "Pe măsură ce anii trec, vă dorim să păstrați mereu acel spirit cald și entuziast, să găsiți în fiecare provocare un prilej de creștere și să inspirați cu aceeași bucurie și dedicare.",
+  "🎉Pe măsură ce anii trec, vă dorim să păstrați mereu acel spirit cald și entuziast, să găsiți în fiecare provocare un prilej de creștere și să inspirați cu aceeași bucurie și dedicare.🎉",
   
-  "La mulți ani fericiți, doamnă învățătoare! Fie ca drumul vieții să vă fie mereu luminat de iubire, armonie și aprecierea sinceră a tuturor celor pe care i-ați învățat să viseze și să reușească."
+  "🎉La mulți ani fericiți, Doamna învățătoare! Fie ca drumul vieții să vă fie mereu luminat de iubire, armonie și aprecierea sinceră a tuturor celor pe care i-ați învățat să viseze și să reușească.🎉"
 ];
+
+const culori =  [
+  'bg-purple-500',
+  'bg-blue-500',
+  'bg-green-500',
+  'bg-red-500',
+  'bg-yellow-500',
+  'bg-pink-500'
+]
+
 
 const imagini = [poza1, poza2, poza3, poza4, poza5, poza6];
 
@@ -41,7 +51,7 @@ function useWindowSize() {
   return size;
 }
 
-function AnimatedCard({ description, imageSrc }) {
+function AnimatedCard({ description, imageSrc ,bg}) {
   const ref = useRef();
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [showConfetti, setShowConfetti] = useState(false);
@@ -84,7 +94,7 @@ function AnimatedCard({ description, imageSrc }) {
         />
       )}
 
-      <CardImg description={description} imageSrc={imageSrc} />
+      <CardImg description={description} imageSrc={imageSrc} bgColor={bg}  />
     </motion.div>
   );
 }
@@ -96,6 +106,7 @@ function AnimatedCard({ description, imageSrc }) {
           key={index}
           description={urare}
           imageSrc={imagini[index % imagini.length]}
+          bg={culori[index]}
         />
       ))}
     </div>

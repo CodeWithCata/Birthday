@@ -1,33 +1,16 @@
 import React, { useState, useRef } from 'react';
-import YouTube from 'react-youtube';
-
-export default function YouTubeMusicManual() {
+import muzica from '../assets/PozeKitty/LaMultiAniMuzica.mp3'
+export default function MusicPlayerLocal() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const playerRef = useRef(null);
-
-  const opts = {
-    height: '0',
-    width: '0',
-    playerVars: {
-      autoplay: 0,
-      controls: 0,
-      mute: 0,
-      loop: 1,
-      playlist: "vInpqeDRlio",
-    },
-  };
-
-  const onReady = (event) => {
-    playerRef.current = event.target;
-  };
+  const audioRef = useRef(null);
 
   const togglePlay = () => {
-    if (!playerRef.current) return;
+    if (!audioRef.current) return;
 
     if (isPlaying) {
-      playerRef.current.pauseVideo();
+      audioRef.current.pause();
     } else {
-      playerRef.current.playVideo();
+      audioRef.current.play();
     }
     setIsPlaying(!isPlaying);
   };
@@ -38,14 +21,14 @@ export default function YouTubeMusicManual() {
         onClick={togglePlay}
         className="px-6 py-2 bg-violet-700 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition-colors duration-300"
       >
-        {isPlaying ? 'Pune pauza ▶️' : 'Apasa 🎵'} 
+        {isPlaying ? 'Pune pauza ▶️' : 'Apasa 🎵'}
       </button>
 
-      {/* Hidden YouTube Player */}
-      <YouTube
-        videoId="vInpqeDRlio"
-        opts={opts}
-        onReady={onReady}
+      {/* Player audio invizibil (fără controale vizibile) */}
+      <audio
+        ref={audioRef}
+        src={muzica} // calea către fișierul tău mp3 din folderul public
+        loop
         style={{ display: 'none' }}
       />
     </div>
